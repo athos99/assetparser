@@ -7,7 +7,7 @@
  */
 
 namespace app\extensions\assetparser;
-use Yii;
+use yii;
 use yii\base\Component;
 use yii\web\IAssetConverter;
 
