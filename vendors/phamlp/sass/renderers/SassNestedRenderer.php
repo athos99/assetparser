@@ -55,7 +55,16 @@ class SassNestedRenderer extends SassExpandedRenderer {
 	 * @return string the rendered selectors
 	 */
 	protected function renderSelectors($node) {
+		$this->filterSelectors($node);
 		$indent = $this->getIndent($node);
 	  return $indent.join(",\n$indent", $node->selectors);
+	}
+
+	protected function filterSelectors($node) {
+		foreach($node->selectors as $index => $selector) {
+			if(substr_compare($selector, '%', 0, 1) === 0) {
+				$node->removeSelector($selector);
+			}
+		}
 	}
 }
