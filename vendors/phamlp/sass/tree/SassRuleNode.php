@@ -67,6 +67,14 @@ class SassRuleNode extends SassNode {
 		$this->selectors = array_merge($this->selectors, $this->explode($selectors));
 	}
 
+	public function removeSelector($selectorToRemove) {
+		foreach($this->selectors as $index => $selector) {
+			if($selector === $selectorToRemove) {
+				unset($this->selectors[$index]);
+			}
+		}
+	}
+
 	/**
 	 * Returns a value indicating if the selectors for this rule are to be continued.
 	 * @param boolean true if the selectors for this rule are to be continued,
