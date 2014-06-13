@@ -1,5 +1,11 @@
 {
 	"name": "athos99/assetparser",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/athos99/assetparser"
+        }
+    ],
 	"description": "Asset parser Less scss and sass for the Yii framework",
 	"keywords": ["yii2", "less", "sass", "scss"],
 	"type": "yii2-extension",
