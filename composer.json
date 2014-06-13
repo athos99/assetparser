@@ -1,0 +1,23 @@
+{
+	"name": "athos99/assetparser",
+	"description": "Asset parser Less scss and sass for the Yii framework",
+	"keywords": ["yii2", "less", "sass", "scss"],
+	"type": "yii2-extension",
+	"license": "BSD-3-Clause",
+	"support": {
+	},
+	"authors": [
+		{
+			"name": "Michel Bobillier aka Athos99",
+			"email": "athos99@bluewin.ch"
+		}
+	],
+	"require": {
+        "leafo/lessphp": "0.4.*@dev",
+        "leafo/scssphp": "dev-master",
+        "richthegeek/phpsass": "dev-master"
+	},
+	"autoload": {
+		"psr-4": { "athos99\\authclient\\": "" }
+	}
+}

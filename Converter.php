@@ -9,9 +9,9 @@
 namespace app\extensions\assetparser;
 use Yii;
 use yii\base\Component;
-use yii\web\IAssetConverter;
+use yii\web\AssetConverterInterface;
 
-class Converter extends Component implements IAssetConverter
+class Converter extends Component implements AssetConverterInterface
 {
     /**
      * @var array parsers
@@ -59,7 +59,7 @@ class Converter extends Component implements IAssetConverter
             if (isset($this->parsers[$ext])) {
                 $parserConfig = $this->parsers[$ext];
                 $result = substr($asset, 0, $pos + 1) . $parserConfig['output'];
-                if ($this->force || (@filemtime("$basePath/$result") < filemtime("$basePath/$asset"))) {
+                if ($this->force || !is_file($basePath . '/' . $result) || (@filemtime("$basePath/$result") < filemtime("$basePath/$asset"))) {
                     $parser = new $parserConfig['class']($parserConfig['options']);
                     $parser->parse("$basePath/$asset", "$basePath/$result", isset($parserConfig['options']) ? $parserConfig['options'] : array());
                     if (YII_DEBUG) {
