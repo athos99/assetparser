@@ -1,23 +1,35 @@
-Only for YII2 with the new Asset Manager, convert Less and Sass files to CSS whithout external tools and executable. The sass and less files are converted with PHP librairies
-It replace the AssetConverter who use external tools.
+Only for YII2 with the new Asset Manager, convert Less and Sass files to CSS without external tools and executable.
+The sass and less files are converted with PHP librairies
+It replace the yii\web\AssetConverter who use external tools.
 The Less and Sass file are converted with time source files dependency.
 
 ##Requirements
 
 YII 2.0
 
-##Usage
+##Installation and configuration
+### installation
+This package is install by composer, in your composer.json add :
+ ~~~
+    "require": {
+        ....
+        "athos99/assetparser": "*"
+        .....
+        }
+ ~~~
 
-1)Copy the source to your project in {app}/protected/extensions/asset_parser
-2)Modify assetManager in your configuration file {app}/protected/config/main.php
+
+### configuration
+
+Modify assetManager components definition in your YII configuration file {app}/config/web.php
 
 
 ~~~
 [php]
         'assetManager' => array(
-            'bundles' => require(__DIR__ . '/assets.php'),
+//            'bundles' => require(__DIR__ . '/assets.php'),
             'converter'=>array(
-                'class'=>'app\extensions\assetparser\Converter',
+                'class'=>'athos99\assetparser\Converter',
                 'force'=>false
             )
         ),
