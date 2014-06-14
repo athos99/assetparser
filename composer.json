@@ -4,8 +4,7 @@
     "keywords": ["yii2", "less", "sass", "scss"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
-    "installation-source": "source",
-
+    "installation-source": "dist",
     "support": {
         "source": "https://github.com/athos99/assetparser"
     },
