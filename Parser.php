@@ -1,5 +1,5 @@
 <?php
-namespace app\extensions\assetparser;
+namespace athos99\assetparser;
 use yii\base\Object;
 
 abstract class Parser extends Object

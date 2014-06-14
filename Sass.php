@@ -1,5 +1,6 @@
 <?php
-namespace app\extensions\assetparser;
+namespace athos99\assetparser;
+
 use Yii;
 
 class Sass extends Parser

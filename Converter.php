@@ -18,19 +18,19 @@ class Converter extends Component implements AssetConverterInterface
      */
     public $parsers = array(
         'sass' => array( // file extension to parse
-            'class' => 'app\extensions\assetparser\Sass',
+            'class' => 'athos99\assetparser\Sass',
             'output' => 'css', // parsed output file type
             'options' => array(
                 'cachePath' => '@app/runtime/cache/sass-parser' // optional options
             ),
         ),
         'scss' => array( // file extension to parse
-            'class' => 'app\extensions\assetparser\Sass',
+            'class' => 'athos99\assetparser\Sass',
             'output' => 'css', // parsed output file type
             'options' => array() // optional options
         ),
         'less' => array( // file extension to parse
-            'class' => 'app\extensions\assetparser\Less',
+            'class' => 'athos99\assetparser\Less',
             'output' => 'css', // parsed output file type
             'options' => array(
                 'auto' => true // optional options
