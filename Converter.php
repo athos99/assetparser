@@ -16,27 +16,27 @@ class Converter extends Component implements AssetConverterInterface
     /**
      * @var array parsers
      */
-    public $parsers = array(
-        'sass' => array( // file extension to parse
+    public $parsers = [
+        'sass' => [ // file extension to parse
             'class' => 'athos99\assetparser\Sass',
             'output' => 'css', // parsed output file type
-            'options' => array(
+            'options' => [
                 'cachePath' => '@app/runtime/cache/sass-parser' // optional options
-            ),
-        ),
-        'scss' => array( // file extension to parse
+            ],
+        ],
+        'scss' => [ // file extension to parse
             'class' => 'athos99\assetparser\Sass',
             'output' => 'css', // parsed output file type
-            'options' => array() // optional options
-        ),
-        'less' => array( // file extension to parse
+            'options' => [] // optional options
+        ],
+        'less' => [ // file extension to parse
             'class' => 'athos99\assetparser\Less',
             'output' => 'css', // parsed output file type
-            'options' => array(
+            'options' => [
                 'auto' => true // optional options
-            )
-        )
-    );
+            ]
+        ]
+    ];
 
 
     /**
@@ -61,7 +61,7 @@ class Converter extends Component implements AssetConverterInterface
                 $result = substr($asset, 0, $pos + 1) . $parserConfig['output'];
                 if ($this->force || !is_file($basePath . '/' . $result) || (@filemtime("$basePath/$result") < filemtime("$basePath/$asset"))) {
                     $parser = new $parserConfig['class']($parserConfig['options']);
-                    $parser->parse("$basePath/$asset", "$basePath/$result", isset($parserConfig['options']) ? $parserConfig['options'] : array());
+                    $parser->parse("$basePath/$asset", "$basePath/$result", isset($parserConfig['options']) ? $parserConfig['options'] : []);
                     if (YII_DEBUG) {
                         Yii::info("Converted $asset into $result ", __CLASS__);
                     }
