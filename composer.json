@@ -28,7 +28,7 @@
 
     },
     "require": {
-        "oyejorge/less.php": "dev-master",
+        "oyejorge/less.php": "*",
         "leafo/scssphp": "dev-master",
         "richthegeek/phpsass": "dev-master"
     },
