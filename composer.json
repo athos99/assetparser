@@ -28,7 +28,7 @@
 
     },
     "require": {
-        "leafo/lessphp": "0.4.*@dev",
+        "oyejorge/less.php": "dev-master",
         "leafo/scssphp": "dev-master",
         "richthegeek/phpsass": "dev-master"
     },
