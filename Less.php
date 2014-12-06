@@ -8,7 +8,7 @@ use yii\caching\FileCache;
 class Less extends Parser
 {
 
-    public $auto = false;
+    public $auto = true;
 
 
 
@@ -18,6 +18,10 @@ class Less extends Parser
      */
     public function parse($src, $dst, $options)
     {
+        $max_nesting_level =ini_get('xdebug.max_nesting_level');
+        if ($max_nesting_level !== false) {
+            ini_set('xdebug.max_nesting_level', $max_nesting_level+200);
+        }
         $this->auto = isset($options['auto']) ? $options['auto'] : $this->auto;
         try {
             if ($this->auto) {
