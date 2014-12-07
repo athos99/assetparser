@@ -9,18 +9,30 @@ class Less extends Parser
 {
 
     public $auto = true;
+    public $max_nesting_level = 200;
 
 
 
 
     /**
      * Parse a Less file to CSS
+     *
+     *
+     * @param string $src   source file path + name
+     * @param string $dst   destination file path + name
+     * @param array $options  options
+     *                      'auto' : auto dependency
+     *                      'max_nesting_level' : xdebug max_nesting_level
+     * @return bool
+     * @throws Exception
      */
     public function parse($src, $dst, $options)
     {
+        $update = false;
+        $this->max_nesting_level = isset($options['max_nesting_level']) ? $options['max_nesting_level'] : $this->max_nesting_level;
         $max_nesting_level =ini_get('xdebug.max_nesting_level');
-        if ($max_nesting_level !== false) {
-            ini_set('xdebug.max_nesting_level', $max_nesting_level+200);
+        if ($max_nesting_level !== false && !empty($this->max_nesting_level) ) {
+            ini_set('xdebug.max_nesting_level', $this->max_nesting_level);
         }
         $this->auto = isset($options['auto']) ? $options['auto'] : $this->auto;
         try {
@@ -39,13 +51,16 @@ class Less extends Parser
                 if (!is_array($cache) || ($newCache["updated"] > $cache["updated"])) {
                     $cacheMgr->set($cacheId, $newCache);
                     file_put_contents($dst, $newCache['compiled']);
+                    $update =true;
                 }
             } else {
                 $less = new \lessc();
                 $less->compileFile($src, $dst);
+                $update =true;
             }
         } catch (exception $e) {
             throw new Exception(__CLASS__ . ': Failed to compile less file : ' . $e->getMessage() . '.');
         }
+        return $update;
     }
 }
