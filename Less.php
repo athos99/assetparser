@@ -28,6 +28,11 @@ class Less extends Parser
      */
     public function parse($src, $dst, $options)
     {
+        if (YII_ENV_DEV) {
+            Yii::trace("Converted less $src into $dst ", __METHOD__);
+            Yii::beginProfile("Converted less $src into $dst ", __METHOD__);
+        }
+
         $update = false;
         $this->max_nesting_level = isset($options['max_nesting_level']) ? $options['max_nesting_level'] : $this->max_nesting_level;
         $max_nesting_level =ini_get('xdebug.max_nesting_level');
@@ -61,6 +66,10 @@ class Less extends Parser
         } catch (exception $e) {
             throw new Exception(__CLASS__ . ': Failed to compile less file : ' . $e->getMessage() . '.');
         }
+        if (YII_ENV_DEV) {
+            Yii::endProfile("Converted less $src into $dst ", __METHOD__);
+        }
+
         return $update;
     }
 }

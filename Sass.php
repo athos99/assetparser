@@ -22,6 +22,11 @@ class Sass extends Parser
      */
     public function parse($src, $dst, $options)
     {
+        if (YII_ENV_DEV) {
+            Yii::trace("Converted sass $src into $dst ", __METHOD__);
+            Yii::beginProfile("Converted sass $src into $dst ", __METHOD__);
+        }
+
         require_once(Yii::getAlias($this->sassParserPath));
         if (!empty($options['cachePath'])) {
             $options['cache_location'] = Yii::getAlias($options['cachePath']);
@@ -33,5 +38,9 @@ class Sass extends Parser
 
         $parser = Yii::createObject('SassParser', $options);
         file_put_contents($dst, $parser->toCss($src));
+        if (YII_ENV_DEV) {
+            Yii::endProfile("Converted sass $src into $dst ", __METHOD__);
+        }
+
     }
 }
